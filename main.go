@@ -278,8 +278,10 @@ func (m model) View() string {
 } */
 
 func main() {
+	
 	log.Println("starting")
-
+	os.Setenv("TERM", "xterm-256color")
+    os.Setenv("COLORTERM", "truecolor")
 	loadAssets()
 	log.Printf("art length=%d", len(art))
 	log.Printf("logo length=%d", len(logo))
