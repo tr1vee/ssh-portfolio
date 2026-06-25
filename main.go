@@ -289,7 +289,7 @@ func main() {
 		wish.WithAddress(":23234"),
 		wish.WithHostKeyPath(hostKey),
 		wish.WithMiddleware(
-			bm.Middleware(func(sess ssh.Session) (tea.Model, []tea.ProgramOption) {
+			/*bm.Middleware(func(sess ssh.Session) (tea.Model, []tea.ProgramOption) {
 				pty, _, active := sess.Pty()
 
 				if !active {
@@ -299,6 +299,20 @@ func main() {
 				log.Println("PTY active:", active)
 				log.Println("TERM:", pty.Term)
 				log.Printf("TERM=%s", sess.Environ())
+				return initialModel(), []tea.ProgramOption{
+					tea.WithAltScreen(),
+				}
+			}) */
+			bm.Middleware(func(sess ssh.Session) (tea.Model, []tea.ProgramOption) {
+				pty, _, active := sess.Pty()
+
+				if !active {
+					log.Println("no PTY")
+				}
+
+				log.Println("PTY:", active)
+				log.Println("TERM:", pty.Term)
+
 				return initialModel(), []tea.ProgramOption{
 					tea.WithAltScreen(),
 				}
