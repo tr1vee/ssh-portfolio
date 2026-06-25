@@ -5,6 +5,7 @@ import (
 	"os"
 	"strings"
 	"time"
+	"fmt"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
@@ -287,6 +288,9 @@ func main() {
 	log.Printf("logo length=%d", len(logo))
 	// ensureHostKey()
 
+	fmt.Println("Has colors:", lipgloss.HasDarkBackground())
+fmt.Println("Profile:", lipgloss.ColorProfile())
+	
 	s, err := wish.NewServer(
 		wish.WithAddress(":23234"),
 		wish.WithHostKeyPath(hostKey),
